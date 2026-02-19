@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "993265996119",
+    "project_id": "fir-163c4",
+    "storage_bucket": "fir-163c4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993265996119:android:1739655501c9422c2bae12",
+        "android_client_info": {
+          "package_name": "com.android.deeplink_cookbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhgl33FTjsD4sQt9Bh2bmofmnJ1mNzmbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:993265996119:android:1739655501c9422c2bae12",
+        "android_client_info": {
+          "package_name": "com.example.deeplink_cookbook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhgl33FTjsD4sQt9Bh2bmofmnJ1mNzmbk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
