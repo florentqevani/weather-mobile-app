@@ -1,68 +1,44 @@
-# Weather Search App (Flutter)
+# Weather Forecast App (Flutter)
 
-A clean Flutter weather app that lets users search any city and view current weather details in real time using the OpenWeather API.
-
-## Preview
-- Search weather by city name
-- Loading and error states
-- Temperature, condition, and weather icon display
+Structured Flutter weather app with real-time current conditions, hourly forecast, and 5-day daily forecast.
 
 ## Features
-- City-based weather search
-- Live API data from OpenWeather
-- Gradient UI with a card-based weather panel
-- Basic validation for empty input
-- User-friendly error message when a city is not found
+- Search by city
+- Current weather from OpenWeather
+- Hourly forecast (next 12 slots)
+- Daily forecast (5 days)
+- Auto-refresh every 10 minutes
+- Crash reporting via Firebase Crashlytics
 
-## Tech Stack
-- Flutter (Material UI)
-- Dart
-- `http` package for API requests
-- OpenWeather current weather endpoint
-
-## Project Structure
+## Architecture
 ```text
 lib/
-  main.dart                # App entry point
-  weather_page.dart        # Main weather search screen
-  services/
-    weather.dart           # API service layer
+  core/
+    config/app_config.dart
+  data/
+    datasources/weather_remote_datasource.dart
+    models/weather.dart
+    repo/weather_repository_impl.dart
+  domain/
+    weather.dart
+    repositories/weather_repository.dart
+    usecases/get_weather_report.dart
+  presentation/
+    pages/weather_page.dart
+    state/weather_controller.dart
+  main.dart
 ```
 
-## Getting Started
+## Secure API Key Setup
+The API key is loaded at runtime using a compile-time define.
 
-### Prerequisites
-- Flutter SDK installed
-- A device/emulator configured
-- Internet connection
-
-### Run Locally
+Run:
 ```bash
-git clone <your-repository-url>
-cd deeplink_cookbook
-flutter pub get
-flutter run
+flutter run --dart-define=OPENWEATHER_API_KEY=your_openweather_api_key
 ```
 
-## Configuration
+Do not commit API keys to source control.
 
-The app currently uses OpenWeather via an API key in `lib/services/weather.dart`.
-
-For production use:
-- Move the API key out of source code
-- Use `--dart-define` or secure storage/secrets management
-- Add the key to `.gitignore`d local config
-
-Example approach with `--dart-define`:
-```bash
-flutter run --dart-define=OPENWEATHER_API_KEY=your_api_key_here
-```
-
-## API Used
-- OpenWeather Current Weather API  
-  https://openweathermap.org/current
-
-## Notes
-- Project folder name is `deeplink_cookbook`, but current app behavior is weather search.
-- Consider renaming the package/project for consistency.
-
+## API Endpoints Used
+- Current weather: `https://api.openweathermap.org/data/2.5/weather`
+- Forecast: `https://api.openweathermap.org/data/2.5/forecast`
