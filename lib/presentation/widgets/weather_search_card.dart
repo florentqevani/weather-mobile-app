@@ -4,7 +4,6 @@ class WeatherSearchCard extends StatelessWidget {
   const WeatherSearchCard({
     required this.cityController,
     required this.onSearch,
-    required this.onRefresh,
     required this.onFavoriteCityTap,
     required this.favorites,
     required this.isFavoritesLoading,
@@ -14,7 +13,6 @@ class WeatherSearchCard extends StatelessWidget {
 
   final TextEditingController cityController;
   final VoidCallback onSearch;
-  final VoidCallback onRefresh;
   final ValueChanged<String> onFavoriteCityTap;
   final List<String> favorites;
   final bool isFavoritesLoading;
@@ -45,11 +43,6 @@ class WeatherSearchCard extends StatelessWidget {
                 ElevatedButton(
                   onPressed: onSearch,
                   child: const Text('Search'),
-                ),
-                const SizedBox(width: 8),
-                IconButton(
-                  onPressed: onRefresh,
-                  icon: const Icon(Icons.refresh),
                 ),
               ],
             ),

@@ -41,6 +41,15 @@ class _WeatherScreenState extends State<WeatherScreen> {
     _bloc.add(WeatherSearchRequested(city));
   }
 
+  Future<void> _refresh() async {
+    if (_bloc.state.activeCity.isEmpty) {
+      return;
+    }
+
+    _bloc.add(const WeatherRefreshRequested());
+    await _bloc.stream.firstWhere((state) => state is! WeatherLoading);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,58 +70,59 @@ class _WeatherScreenState extends State<WeatherScreen> {
               final isLoading = state is WeatherLoading;
               final errorState = state is WeatherError ? state : null;
 
-              return ListView(
-                padding: const EdgeInsets.all(16),
-                children: [
-                  const Text(
-                    'Weather Forecast',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 28,
-                      fontWeight: FontWeight.w700,
+              return RefreshIndicator(
+                onRefresh: _refresh,
+                child: ListView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.all(16),
+                  children: [
+                    const Text(
+                      'Weather Forecast',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 28,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
-                  ),
-                  if (state.isOffline) ...[
-                    const SizedBox(height: 10),
-                    const OfflineStatusLabel(),
-                  ],
-                  const SizedBox(height: 16),
-                  WeatherSearchCard(
-                    cityController: _cityController,
-                    onSearch: _search,
-                    onRefresh: () {
-                      _bloc.add(const WeatherRefreshRequested());
-                    },
-                    onFavoriteCityTap: _searchByCity,
-                    favorites: state.favoriteCities,
-                    isFavoritesLoading: state.isFavoritesLoading,
-                    favoritesErrorMessage: state.favoritesErrorMessage,
-                  ),
-                  const SizedBox(height: 12),
-                  if (isLoading) ...[
-                    const Center(child: CircularProgressIndicator()),
-                    const SizedBox(height: 12),
-                  ],
-                  if (errorState != null) ...[
-                    _buildErrorCard(errorState),
-                    const SizedBox(height: 12),
-                  ],
-                  if (report != null) ...[
-                    CurrentWeatherCard(
-                      current: report.current,
-                      isFavorite: _isFavoriteCity(state, report.current.city),
-                      onToggleFavorite: () {
-                        _bloc.add(
-                          WeatherToggleFavoriteRequested(report.current.city),
-                        );
-                      },
+                    if (state.isOffline) ...[
+                      const SizedBox(height: 10),
+                      const OfflineStatusLabel(),
+                    ],
+                    const SizedBox(height: 16),
+                    WeatherSearchCard(
+                      cityController: _cityController,
+                      onSearch: _search,
+                      onFavoriteCityTap: _searchByCity,
+                      favorites: state.favoriteCities,
+                      isFavoritesLoading: state.isFavoritesLoading,
+                      favoritesErrorMessage: state.favoritesErrorMessage,
                     ),
                     const SizedBox(height: 12),
-                    HourlyForecastCard(hourly: report.hourly),
-                    const SizedBox(height: 12),
-                    DailyForecastCard(daily: report.daily),
+                    if (isLoading) ...[
+                      const Center(child: CircularProgressIndicator()),
+                      const SizedBox(height: 12),
+                    ],
+                    if (errorState != null) ...[
+                      _buildErrorCard(errorState),
+                      const SizedBox(height: 12),
+                    ],
+                    if (report != null) ...[
+                      CurrentWeatherCard(
+                        current: report.current,
+                        isFavorite: _isFavoriteCity(state, report.current.city),
+                        onToggleFavorite: () {
+                          _bloc.add(
+                            WeatherToggleFavoriteRequested(report.current.city),
+                          );
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                      HourlyForecastCard(hourly: report.hourly),
+                      const SizedBox(height: 12),
+                      DailyForecastCard(daily: report.daily),
+                    ],
                   ],
-                ],
+                ),
               );
             },
           ),
