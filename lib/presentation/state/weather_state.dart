@@ -1,4 +1,4 @@
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 
 abstract class WeatherState {
   const WeatherState({

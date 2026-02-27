@@ -1,5 +1,5 @@
 import '../../domain/repositories/weather_repository.dart';
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 import '../data_sources/weather_local_datasource.dart';
 import '../data_sources/weather_remote_datasource.dart';
 import '../models/weather.dart';

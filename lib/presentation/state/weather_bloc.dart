@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../data/data_sources/favorite_cities_remote_datasource.dart';
 import '../../domain/use_cases/get_weather_report.dart';
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 import 'weather_event.dart';
 import 'weather_state.dart';
 

@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 import '../utils/weather_icon_api.dart';
 
 class WeatherLocalDataSource {

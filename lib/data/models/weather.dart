@@ -1,4 +1,4 @@
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 import '../utils/weather_icon_api.dart';
 
 class CurrentWeatherModel {

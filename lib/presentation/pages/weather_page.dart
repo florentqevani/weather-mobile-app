@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 import '../state/weather_bloc.dart';
 import '../state/weather_event.dart';
 import '../state/weather_state.dart';

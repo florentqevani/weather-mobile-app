@@ -1,4 +1,4 @@
-import '../weather.dart';
+import '../../core/weather.dart';
 
 abstract class WeatherRepository {
   Future<WeatherReport> getWeatherReportByCity(

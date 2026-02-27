@@ -1,5 +1,5 @@
 import '../repositories/weather_repository.dart';
-import '../weather.dart';
+import '../../core/weather.dart';
 
 class GetWeatherReport {
   const GetWeatherReport(this._repository);

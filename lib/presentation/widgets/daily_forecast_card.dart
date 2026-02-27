@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../domain/weather.dart';
+import '../../core/weather.dart';
 
 class DailyForecastCard extends StatelessWidget {
   const DailyForecastCard({required this.daily, super.key});
